@@ -40,3 +40,13 @@ if [ ! -f "$LOG_PATH" ]; then
   echo "Error: Log file $LOG_PATH not found."
   exit 1
 fi
+
+# Extract device IDs and count occurrences
+# Assuming device ID is the 3rd field in the log entries
+
+DEVICE_COUNTS=$(awk '{print $3}' "$LOG_PATH" | sort | uniq -c | sort -nr)
+
+# Get timestamp of first and last entries
+FIRST_TIMESTAMP=$(head -n 1 "$LOG_PATH" | awk '{print $1, $2}')
+LAST_TIMESTAMP=$(tail -n 1 "$LOG_PATH" | awk '{print $1, $2}')
+
