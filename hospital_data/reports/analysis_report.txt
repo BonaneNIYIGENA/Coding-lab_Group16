@@ -1,0 +1,22 @@
+----- Analysis Report -----
+Log File: Heart Rate (heart_rate_log.log)
+Analysis Time: Wed Jun  4 12:24:13 SAST 2025
+First entry timestamp: 2025-06-04 12:23:59
+Last entry timestamp:  2025-06-04 12:24:12
+
+Device Counts:
+     14 HeartRate_Monitor_B
+     14 HeartRate_Monitor_A
+---------------------------
+
+----- Analysis Report -----
+Log File: Heart Rate (heart_rate_log.log)
+Analysis Time: Wed Jun  4 12:25:49 SAST 2025
+First entry timestamp: 2025-06-04 12:23:59
+Last entry timestamp:  2025-06-04 12:25:49
+
+Device Counts:
+    111 HeartRate_Monitor_B
+    111 HeartRate_Monitor_A
+---------------------------
+
