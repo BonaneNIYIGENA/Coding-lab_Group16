@@ -20,3 +20,14 @@ Device Counts:
     111 HeartRate_Monitor_A
 ---------------------------
 
+----- Analysis Report -----
+Log File: Temperature (temperature_log.log)
+Analysis Time: Wed 04 Jun 2025 03:34:10 AM PDT
+First entry timestamp: 2025-06-04 03:32:37
+Last entry timestamp:  2025-06-04 03:34:09
+
+Device Counts:
+     93 Temp_Recorder_B
+     93 Temp_Recorder_A
+---------------------------
+
