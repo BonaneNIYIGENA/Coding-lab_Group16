@@ -50,3 +50,18 @@ DEVICE_COUNTS=$(awk '{print $3}' "$LOG_PATH" | sort | uniq -c | sort -nr)
 FIRST_TIMESTAMP=$(head -n 1 "$LOG_PATH" | awk '{print $1, $2}')
 LAST_TIMESTAMP=$(tail -n 1 "$LOG_PATH" | awk '{print $1, $2}')
 
+# Write report
+{
+  echo "----- Analysis Report -----"
+  echo "Log File: $LOG_NAME ($FILE)"
+  echo "Analysis Time: $(date)"
+  echo "First entry timestamp: $FIRST_TIMESTAMP"
+  echo "Last entry timestamp:  $LAST_TIMESTAMP"
+  echo ""
+  echo "Device Counts:"
+  echo "$DEVICE_COUNTS"
+  echo "---------------------------"
+  echo ""
+} >> "$REPORT_FILE"
+
+echo "Analysis complete. Results appended to $REPORT_FILE"
