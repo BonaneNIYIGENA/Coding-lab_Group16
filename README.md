@@ -114,63 +114,6 @@ Invalid User Input: The case statement catches non-numeric or out-of-range input
 Missing Log file: test -f is used to verify the existing of the active log file before attempting to mive it.
 Archive Directory Issues: mkdir -p ensures the archive directory exists, and itx exit status is checked to handle creation/access errors.
 
-Breakdown and Key Commands Logic
-
-#!/bin/bash
-
-ACTIVE_DIR="active_logs"
-ARCHIVE_DIR="archived_logs"
-
-mkdir -p "$ACTIVE_DIR" "$ARCHIVE_DIR"
-
-# Loop until valid input is given
-while true; do
-  echo "Select log to archive:"
-  echo "1) Heart Rate"
-  echo "2) Temperature"
-  echo "3) Water Usage"
-  read -p "Enter choice (1-3): " choice
-
-  case "$choice" in
-    1)
-      FILE="heart_rate_log.log"
-      PREFIX="heart_rate"
-      break
-      ;;
-    2)
-      FILE="temperature_log.log"
-      PREFIX="temperature"
-      break
-      ;;
-    3)
-      FILE="water_usage_log.log"
-      PREFIX="water_usage"
-      break
-      ;;
-    *)
-      echo "Invalid input. Please enter 1, 2, or 3."
-      ;;
-  esac
-done
-
-TIMESTAMP=$(date +"%Y-%m-%d_%H:%M:%S")
-SRC_PATH="$ACTIVE_DIR/$FILE"
-ARCHIVE_FILE="${PREFIX}_${TIMESTAMP}.log"
-DEST_PATH="$ARCHIVE_DIR/$ARCHIVE_FILE"
-
-if [ ! -f "$SRC_PATH" ]; then
-  echo "Error: Log file $SRC_PATH not found."
-  echo "Available files in $ACTIVE_DIR:"
-  ls "$ACTIVE_DIR"
-  exit 1
-fi
-
-echo "Archiving $FILE..."
-mv "$SRC_PATH" "$DEST_PATH"
-touch "$SRC_PATH"
-
-echo "Successfully archived to $DEST_PATH"
-
 How to use:
 
 From the root of your repository, run the script
@@ -184,3 +127,22 @@ log to count occurrences of each unique device and extracts their timestamps of 
 a cumulative report file.
 
 Core Requirements Implemented
+
+Interactive Prompt: Uses 'select' and 'case' for user-friendly input.
+Input Validation: Ensures only valid menu choices (1-3) are accepted.
+
+Analysis Functionality:
+
+Device Counting: Extract device names from log entries using 'awk' and then counts their occurrences using 'sort' and 'uniq -c'.
+Timestamp Extraction: Retrieves the first and last lines of the log file using 'head' and 'tail' respectively, then parses the timestamps using
+'awk' and 'tr'.
+
+Reporting: All results are formatted and appended to reports/analysis_report.txt using output redirection (>>).
+The report includes a header with the analysis time and details of the analyzed log.
+
+
+How to use:
+
+From the root of your repository, run the script
+
+"./hospital_data/analyze_logs.sh"
